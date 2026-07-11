@@ -1,0 +1,43 @@
+SANCTIONS AND PEP SCREENING POLICY
+Compliance Division | Policy Reference: COMP-003 | Version 1.8
+
+1. OVERVIEW
+This policy governs the screening of customers, counterparties, and transactions against sanctions lists and Politically Exposed Person (PEP) databases, as required under the AML/CTF Act 2006, the Charter of the United Nations Act 1945, and the Autonomous Sanctions Act 2011.
+
+2. SANCTIONS SCREENING REQUIREMENTS
+All transactions must be screened against:
+- UNSC Consolidated Sanctions List (United Nations Security Council)
+- OFAC SDN List (US Office of Foreign Assets Control — Specially Designated Nationals)
+- Australian Department of Foreign Affairs and Trade (DFAT) consolidated list
+- EU Consolidated Financial Sanctions List
+
+Transactions involving sanctioned entities must be blocked immediately and reported to the relevant authority within 24 hours.
+
+3. HIGH-RISK COUNTRY CLASSIFICATIONS
+The following country categories require enhanced transaction monitoring and additional due diligence:
+- FATF High-Risk Jurisdictions Under Increased Monitoring (current list maintained by the Financial Action Task Force)
+- Countries subject to Australian autonomous sanctions
+- Correspondent banking risk: counterparty banks in jurisdictions with weak AML frameworks
+- Offshore financial centres identified as high-risk by AUSTRAC guidance
+
+4. TRANSACTION-LEVEL TRIGGERS
+A transaction is flagged for sanctions review when:
+- The originating or destination country is on the DFAT or OFAC list
+- The transaction amount is material (>$1,000 AUD to/from high-risk jurisdiction)
+- The customer's account has been linked to prior sanctions alerts
+- Real-time geo-IP analysis indicates a high-risk jurisdiction
+
+5. PEP SCREENING
+Politically Exposed Persons (foreign and domestic) are subject to enhanced due diligence:
+- Identity verified against commercially available PEP databases (World-Check, Dow Jones)
+- Source of funds documented for transactions exceeding $5,000 AUD
+- Annual re-screening required for all PEP-classified customers
+- Senior Management approval required before establishing a relationship with a PEP
+
+6. BREACH PROCEDURES
+In the event of a confirmed sanctions match:
+1. Block the transaction immediately
+2. Do not alert the customer (tipping-off prohibition under s123 AML/CTF Act)
+3. Notify the Compliance team within 1 hour
+4. Submit a Suspicious Matter Report (SMR) to AUSTRAC within 24 hours
+5. Freeze the account pending further investigation

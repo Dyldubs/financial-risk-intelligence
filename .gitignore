@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.DS_Store
+mlruns/
+mlflow.db
+data/raw/*.csv
+data/processed/
+*.egg-info/
+.pytest_cache/

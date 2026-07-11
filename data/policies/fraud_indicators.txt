@@ -1,0 +1,42 @@
+FRAUD TYPOLOGIES AND INDICATORS
+Financial Crime Intelligence Unit | Reference Document v2.1
+
+1. VELOCITY FRAUD
+Description: Fraudsters rapidly make multiple transactions in a short window before the account owner or the bank detects the compromise.
+Indicators:
+- More than 3 transactions within a 1-hour window from a single card or account
+- More than 15 transactions within 24 hours deviating significantly from historical baseline
+- Rapid sequential transactions at different merchants with no plausible travel pattern
+- Transactions immediately following a password reset or contact detail change
+
+2. ACCOUNT TAKEOVER (ATO)
+Description: A fraudster gains access to a legitimate customer's account and makes unauthorised transactions.
+Indicators:
+- Transaction at an unusual time of day (particularly 11pm–5am local time)
+- Transaction from a new device or IP geolocation not seen in account history
+- High-value transaction immediately following login from a new location
+- Amount significantly exceeds the account holder's typical spend pattern
+
+3. CARD-NOT-PRESENT (CNP) FRAUD
+Description: Fraudulent use of card details for online or phone purchases where the physical card is not required.
+Indicators:
+- Multiple failed transactions (incorrect CVV, address mismatch) followed by a successful one
+- Transaction at a high-risk merchant category (electronics, gift cards, digital currency)
+- Billing address does not match registered account address
+- Transaction originates from a proxy IP, VPN, or TOR exit node
+
+4. FIRST-PARTY FRAUD
+Description: A customer intentionally misrepresents their identity or circumstances to obtain financial benefit.
+Indicators:
+- Account opened with synthetic identity (new address, no credit history, funded immediately)
+- High transaction volume shortly after account opening (within 30 days)
+- Rapid drawdown of credit followed by default
+- Multiple accounts sharing the same device fingerprint or phone number
+
+5. MERCHANT FRAUD
+Description: A merchant processes fraudulent transactions, often in collusion with cardholders.
+Indicators:
+- Merchant category code (MCC) inconsistent with expected business type
+- High chargebacks relative to transaction volume
+- Transactions processed outside normal business hours for the merchant type
+- Unusually high average transaction value for the merchant category

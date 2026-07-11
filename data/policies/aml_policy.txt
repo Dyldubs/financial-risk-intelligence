@@ -1,0 +1,35 @@
+ANTI-MONEY LAUNDERING (AML) POLICY
+Version 3.2 | Effective Date: 1 January 2025
+
+1. PURPOSE
+This policy establishes the framework for detecting, reporting, and preventing money laundering activities in accordance with the Anti-Money Laundering and Counter-Terrorism Financing Act 2006 (AML/CTF Act) and AUSTRAC reporting obligations.
+
+2. RISK-BASED APPROACH
+All customer transactions are subject to a risk-based assessment. Transactions are scored on a scale of LOW, MEDIUM, HIGH, and CRITICAL based on the following risk factors:
+- Transaction amount relative to customer's historical average
+- Transaction velocity (frequency within 1-hour and 24-hour windows)
+- Jurisdiction risk (sanctioned or high-risk countries per FATF list)
+- Customer risk profile (account age, KYC status, prior alerts)
+- Merchant category risk (gambling, cash-intensive businesses, crypto exchanges)
+
+3. TRANSACTION MONITORING THRESHOLDS
+The following thresholds trigger mandatory review:
+- Single transaction exceeding $10,000 AUD: automatic STR consideration
+- Structuring patterns: multiple transactions just below $10,000 within 24 hours
+- Amount-to-average ratio exceeding 5x the customer's 30-day average
+- More than 5 transactions per hour from a single account
+
+4. HIGH-RISK JURISDICTIONS
+Transactions involving counterparties in the following categories require enhanced due diligence:
+- FATF High-Risk Jurisdictions (currently: Iran, Myanmar, North Korea, Russia-sanctioned entities)
+- AUSTRAC-identified high-risk countries
+- Jurisdictions with inadequate AML/CTF regimes
+
+5. REPORTING OBLIGATIONS
+Suspicious Matter Reports (SMRs) must be submitted to AUSTRAC within 24 hours of forming a suspicion. Threshold Transaction Reports (TTRs) must be submitted within 10 business days for cash transactions over $10,000.
+
+6. ESCALATION PROCEDURE
+CRITICAL tier: Immediate escalation to Financial Crime unit. Transaction hold applied automatically.
+HIGH tier: Same-day analyst review required. Transaction proceeds with monitoring flag.
+MEDIUM tier: Added to daily review queue. No transaction hold.
+LOW tier: Logged for audit trail only.
