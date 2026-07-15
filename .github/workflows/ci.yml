@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Run test suite (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest -v --tb=short
+        env:
+          # Empty key → summariser falls back to template-based output,
+          # which is what the tests assert. No real API calls are made.
+          ANTHROPIC_API_KEY: ""
+          # Use an in-memory SQLite DB so MLflow doesn't write to disk during tests
+          MLFLOW_TRACKING_URI: "sqlite:///mlflow_ci.db"
