@@ -1,14 +1,17 @@
 """
-Training script. Trains and saves the anomaly detection model(s).
+Training script. Trains and saves the anomaly detection / classification models.
 
 Usage:
-    python scripts/train.py                        # train both models (default)
+    python scripts/train.py                          # train all models (default)
     python scripts/train.py --model isolation_forest
     python scripts/train.py --model xgboost
-    python scripts/train.py --model both
+    python scripts/train.py --model scorecard
+    python scripts/train.py --model both            # isolation_forest + xgboost
 
 Options:
-    --model MODEL  Which model to train: isolation_forest | xgboost | both (default: both)
+    --model MODEL  Which model to train:
+                     isolation_forest | xgboost | scorecard | both | all
+                     (default: all)
     --trials N     Number of Optuna hyperparameter search trials (default: 30)
     --data PATH    Path to a custom CSV (default: uses synthetic data)
 """
@@ -67,13 +70,35 @@ def train_xgboost(df, n_trials):
     return result
 
 
+def train_scorecard(df, **kwargs):
+    from src.models.scorecard import train_scorecard as _train
+
+    print("\n── Logistic Regression Scorecard (WoE/IV) ───────────────")
+
+    if "is_fraud" not in df.columns:
+        print("  WARNING: 'is_fraud' column not found — skipping scorecard.")
+        return None
+
+    result = _train(df)
+    m = result["metrics"]
+    print(f"\n  AUC-PR : {m['auc_pr']:.4f}")
+    print(f"  AUC-ROC: {m['auc_roc']:.4f}")
+    print(f"  Gini   : {m['gini']:.4f}")
+    print(f"  KS     : {m['ks_stat']:.4f}")
+    print(f"  Features selected (IV ≥ 0.02): {m['n_features_selected']}")
+
+    print("\n  Information Value summary:")
+    print(result["all_iv_summary"].to_string(index=False))
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--model",
-        choices=["isolation_forest", "xgboost", "both"],
-        default="both",
-        help="Which model to train (default: both)",
+        choices=["isolation_forest", "xgboost", "scorecard", "both", "all"],
+        default="all",
+        help="Which model to train (default: all)",
     )
     parser.add_argument("--trials", type=int, default=30,
                         help="Optuna trials per model (default: 30)")
@@ -90,12 +115,18 @@ def main():
 
     if_result  = None
     xgb_result = None
+    sc_result  = None
 
-    if args.model in ("isolation_forest", "both"):
+    run_if  = args.model in ("isolation_forest", "both", "all")
+    run_xgb = args.model in ("xgboost", "both", "all")
+    run_sc  = args.model in ("scorecard", "all")
+
+    if run_if:
         if_result = train_isolation_forest(df, args.trials)
-
-    if args.model in ("xgboost", "both"):
+    if run_xgb:
         xgb_result = train_xgboost(df, args.trials)
+    if run_sc:
+        sc_result = train_scorecard(df)
 
     # Summary
     print("\n" + "=" * 60)
@@ -106,9 +137,15 @@ def main():
     if xgb_result:
         print(f"  XGBoost           — AUC-PR : {xgb_result['best_auc_pr']:.4f}")
         print(f"  XGBoost           — AUC-ROC: {xgb_result['best_auc_roc']:.4f}")
+    if sc_result:
+        m = sc_result["metrics"]
+        print(f"  LR Scorecard      — AUC-PR : {m['auc_pr']:.4f}")
+        print(f"  LR Scorecard      — Gini   : {m['gini']:.4f}")
+        print(f"  LR Scorecard      — KS     : {m['ks_stat']:.4f}")
 
     print("\nNext steps:")
-    print("  See notebooks/02_model_comparison.ipynb for a full side-by-side evaluation.")
+    print("  See notebooks/02_model_comparison.ipynb for IF vs XGBoost.")
+    print("  See notebooks/04_scorecard.ipynb for the scorecard deep-dive.")
     print("  streamlit run app/streamlit_app.py")
 
 
