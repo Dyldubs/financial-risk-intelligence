@@ -9,5 +9,6 @@ mlruns/
 mlflow.db
 data/raw/*.csv
 data/processed/
+data/transactions.db
 *.egg-info/
 .pytest_cache/
